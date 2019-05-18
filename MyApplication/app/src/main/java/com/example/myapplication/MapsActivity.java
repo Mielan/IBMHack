@@ -104,7 +104,7 @@ public class MapsActivity extends AppCompatActivity implements
                             .visible(true)
                             .alpha(0.8f)
                     );
-
+                    //AlertDialog
                 }
             });
         }
