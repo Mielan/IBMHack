@@ -46,8 +46,9 @@ public class MapsActivity extends AppCompatActivity implements
     private Location lastLocation;
     private Marker currentUserLocationMarker;
     private static final int Request_User_Location_Code = 99;
-    private ArrayList<LatLng> safe = new ArrayList<LatLng>();
-    private ArrayList<LatLng> danger = new ArrayList<LatLng>();
+    private ArrayList<Marker> safe = new ArrayList<Marker>();
+    private ArrayList<Marker> danger = new ArrayList<Marker>();
+    private int dangerOrNot = 0;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -71,7 +72,11 @@ public class MapsActivity extends AppCompatActivity implements
     public void sendMessage(View view)
     {
         // Do something in response to button click
-        System.out.println("a");
+        if (dangerOrNot == 0) {
+            dangerOrNot = 1;
+        } else {
+            dangerOrNot = 0;
+        }
     }
     /**
      * Manipulates the map once available.
@@ -99,11 +104,27 @@ public class MapsActivity extends AppCompatActivity implements
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
-                    Marker marker = mMap.addMarker(new MarkerOptions()
-                            .position(latLng)
-                            .visible(true)
-                            .alpha(0.8f)
-                    );
+                    Marker marker;
+                    if (dangerOrNot == 1) {
+                        marker = mMap.addMarker(new MarkerOptions()
+                                .position(latLng)
+                                .visible(true)
+                                .alpha(0.8f)
+                                .title("Danger")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
+                        );
+                        safe.add(marker);
+                    } else {
+                        marker = mMap.addMarker(new MarkerOptions()
+                                .position(latLng)
+                                .visible(true)
+                                .alpha(0.8f)
+                                .title("Safe")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
+                        );
+                        danger.add(marker);
+                    }
+
                     //AlertDialog
                 }
             });
