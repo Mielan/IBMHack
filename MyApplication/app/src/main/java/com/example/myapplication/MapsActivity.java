@@ -71,9 +71,7 @@ public class MapsActivity extends AppCompatActivity implements
     JSONObject obj = new JSONObject();
 
     //json object for database
-    JSONArray Jsafe;
-    JSONArray Jdanger;
-    JSONObject Juser = new JSONObject();
+
 
 
 
@@ -165,18 +163,14 @@ public class MapsActivity extends AppCompatActivity implements
                                     }
                                 }) ;
                         p = latLng;
-                        lat = p.latitude;
-                        lng = p.longitude;
-                        String latS = Double.toString(lat);
-                        String lngS = Double.toString(lng);
+                        //lat = p.latitude;
+                        //lng = p.longitude;
+                        //String latS = Double.toString(lat);
+                        //String lngS = Double.toString(lng);
                         //obj.put(latS, lngS);
                         //System.out.println(lat + " " + lng);
                         //System.out.println(p);
 
-                        //save to database
-                        Ldanger.add(latLng);
-                        Jdanger = new JSONArray(Lsafe);
-                        Log.d("jdanger",Jdanger.toString());
                     } else {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
@@ -202,9 +196,7 @@ public class MapsActivity extends AppCompatActivity implements
 
                                     }
                                 }) ;
-                        // save to database
-                        Lsafe.add(latLng);
-                        Jsafe = new JSONArray(Lsafe);
+
 
                     }
 
@@ -273,12 +265,11 @@ public class MapsActivity extends AppCompatActivity implements
         }
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        try {
-            Juser = new JSONObject(latLng.toString());
+        /*try {
+            //Juser = new JSONObject(latLng.toString());
         } catch (JSONException e) {
             Log.e("json", "unexpected JSON exception", e);
-        }
-
+        }*/
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("User Current Location");
