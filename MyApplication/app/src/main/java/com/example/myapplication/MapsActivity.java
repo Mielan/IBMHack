@@ -82,11 +82,6 @@ public class MapsActivity extends AppCompatActivity implements
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CloudantClient client = ClientBuilder.account("34c7d227-ad0b-4b2f-9a42-d1156dbb08f6-bluemix.cloudantnosqldb.appdomain.cloud")
-                .username("34c7d227-ad0b-4b2f-9a42-d1156dbb08f6-bluemix")
-                .password("ExOeDKIz8jItzCzpe73046FcQjj68AqWCiU5hqkJiZ_Q")
-                .build();
-
 
         setContentView(R.layout.activity_maps);
 
@@ -102,6 +97,9 @@ public class MapsActivity extends AppCompatActivity implements
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
+
+       
+
 
     }
 
@@ -128,6 +126,7 @@ public class MapsActivity extends AppCompatActivity implements
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
+
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
 
@@ -224,6 +223,7 @@ public class MapsActivity extends AppCompatActivity implements
             });
 
         }
+
 
     }
 
