@@ -56,15 +56,11 @@ public class MapsActivity extends AppCompatActivity implements
     private static final int Request_User_Location_Code = 99;
     private ArrayList<Marker> safe = new ArrayList<Marker>();
     private ArrayList<Marker> danger = new ArrayList<Marker>();
-    private ArrayList<LatLng> Lsafe = new ArrayList<>();
-    private ArrayList<LatLng> Ldanger = new ArrayList<>();
     private int dangerOrNot = 1;
     private LatLng p;
 
     //json object for database
-    JSONArray Jsafe;
-    JSONArray Jdanger;
-    JSONObject Juser = new JSONObject();
+
 
 
 
@@ -144,13 +140,7 @@ public class MapsActivity extends AppCompatActivity implements
                                         marker.remove();
                                     }
                                 }) ;
-                        p = latLng;
-                        System.out.println(p);
 
-                        //save to database
-                        Ldanger.add(latLng);
-                        Jdanger = new JSONArray(Lsafe);
-                        Log.d("jdanger",Jdanger.toString());
                     } else {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
@@ -176,9 +166,7 @@ public class MapsActivity extends AppCompatActivity implements
 
                                     }
                                 }) ;
-                        // save to database
-                        Lsafe.add(latLng);
-                        Jsafe = new JSONArray(Lsafe);
+
 
                     }
 
@@ -246,13 +234,6 @@ public class MapsActivity extends AppCompatActivity implements
         }
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        try {
-
-            Juser = new JSONObject(latLng.toString());
-
-        } catch (JSONException e) {
-            Log.e("json", "unexpected JSON exception", e);
-        }
 
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
