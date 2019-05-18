@@ -216,6 +216,7 @@ public class MapsActivity extends AppCompatActivity implements
                     alert.show();
                 }
             });
+
         }
 
     }
