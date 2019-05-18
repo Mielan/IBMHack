@@ -30,6 +30,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+//import android.support.v7.app.ActionBarActivity;
 
 import java.util.ArrayList;
 
@@ -105,6 +108,24 @@ public class MapsActivity extends AppCompatActivity implements
                             .alpha(0.8f)
                     );
                     //AlertDialog
+                    AlertDialog.Builder a_builder = new AlertDialog.Builder(MapsActivity.this);
+                    a_builder.setMessage("Change This Zone To Danger")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.cancel();
+                                }
+                            }) ;
+                    AlertDialog alert = a_builder.create();
+                    alert.setTitle("Alert !!!");
+                    alert.show();
                 }
             });
         }
