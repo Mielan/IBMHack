@@ -73,6 +73,7 @@ public class MapsActivity extends AppCompatActivity implements
     private double lng;
     JSONObject obj = new JSONObject();
 
+
     //json object for database
 
 
@@ -98,10 +99,30 @@ public class MapsActivity extends AppCompatActivity implements
         Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
-       
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try{
+                    CloudantClient client = ClientBuilder.account("34c7d227-ad0b-4b2f-9a42-d1156dbb08f6-bluemix")
+                            .username("34c7d227-ad0b-4b2f-9a42-d1156dbb08f6-bluemix")
+                            .password("ExOeDKIz8jItzCzpe73046FcQjj68AqWCiU5hqkJiZ_Q")
+                            .build();
+                    List<String> databases = client.getAllDbs();
+                    System.out.println("All my databases : ");
+                    for ( String db : databases ) {
+                        System.out.println(db);
+                    }
+
+                } catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
 
 
     }
+
 
     public void findRoute(View view){
 
