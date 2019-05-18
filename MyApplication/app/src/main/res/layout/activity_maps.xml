@@ -8,12 +8,22 @@
     tools:context=".MapsActivity">
 
 
+    <include
+    android:id="@+id/toolbar"
+    layout="@layout/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="visible" />
+
+
     <fragment xmlns:map="http://schemas.android.com/apk/res-auto"
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
+        android:layout_height="595dp"
+        android:layout_below="@+id/toolbar"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="5dp"
         android:layout_marginBottom="75dp"
         tools:context=".MapsActivity" />
 

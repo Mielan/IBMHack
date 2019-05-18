@@ -91,7 +91,7 @@ public class MapsActivity extends AppCompatActivity implements
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        //Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 
     }
@@ -273,9 +273,7 @@ public class MapsActivity extends AppCompatActivity implements
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
         try {
-
             Juser = new JSONObject(latLng.toString());
-
         } catch (JSONException e) {
             Log.e("json", "unexpected JSON exception", e);
         }
