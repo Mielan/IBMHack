@@ -30,6 +30,8 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
@@ -43,7 +45,8 @@ public class MapsActivity extends AppCompatActivity implements
     private Location lastLocation;
     private Marker currentUserLocationMarker;
     private static final int Request_User_Location_Code = 99;
-
+    private ArrayList<LatLng> safe = new ArrayList<LatLng>();
+    private ArrayList<LatLng> danger = new ArrayList<LatLng>();
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -88,9 +91,22 @@ public class MapsActivity extends AppCompatActivity implements
             // for ActivityCompat#requestPermissions for more details.
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
+            mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+                @Override
+                public void onMapClick(LatLng latLng) {
+                    Marker marker = mMap.addMarker(new MarkerOptions()
+                            .position(latLng)
+                            .visible(true)
+                            .alpha(0.8f)
+                    );
+
+                }
+            });
         }
 
     }
+
+
 
     public boolean checkUserLocationPermission(){
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
