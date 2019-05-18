@@ -107,7 +107,8 @@ public class MapsActivity extends AppCompatActivity implements
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
                 public void onMapClick(LatLng latLng) {
-                    Marker marker;
+                    final Marker marker;
+                    AlertDialog.Builder a_builder = new AlertDialog.Builder(MapsActivity.this);
                     if (dangerOrNot == 1) {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
@@ -116,7 +117,23 @@ public class MapsActivity extends AppCompatActivity implements
                                 .title("Danger")
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED))
                         );
-                        safe.add(marker);
+                        a_builder.setMessage("Change This Zone To Danger")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        danger.add(marker);
+                                    }
+                                })
+                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        marker.remove();
+                                    }
+                                }) ;
+
                     } else {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
@@ -125,25 +142,28 @@ public class MapsActivity extends AppCompatActivity implements
                                 .title("Safe")
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
                         );
-                        danger.add(marker);
+                        a_builder.setMessage("Change This Zone To Safe")
+                                .setCancelable(false)
+                                .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        safe.add(marker);
+                                    }
+                                })
+                                .setNegativeButton("No",new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.cancel();
+                                        marker.remove();
+                                    }
+                                }) ;
+
                     }
 
                     //AlertDialog
-                    AlertDialog.Builder a_builder = new AlertDialog.Builder(MapsActivity.this);
-                    a_builder.setMessage("Change This Zone To Danger")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            })
-                            .setNegativeButton("No",new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.cancel();
-                                }
-                            }) ;
+
+
                     AlertDialog alert = a_builder.create();
                     alert.setTitle("Alert !!!");
                     alert.show();
