@@ -1,0 +1,5 @@
+---
+applications:
+ - name: AI Hack
+   random-route: true
+   memory: 256M
