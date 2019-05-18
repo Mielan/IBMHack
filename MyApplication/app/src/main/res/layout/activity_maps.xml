@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/a_topBlue"
     tools:context=".MapsActivity">
 
     <include
@@ -36,7 +36,8 @@
         android:layout_marginStart="216dp"
         android:layout_marginLeft="216dp"
         android:layout_marginBottom="1dp"
-        android:background="@color/colorPrimary" />
+        android:background="@color/colorPrimary"
+        android:onClick="sendMessage" />
 
     <Button
         android:id="@+id/button"

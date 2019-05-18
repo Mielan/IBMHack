@@ -29,6 +29,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import java.util.ArrayList;
 
@@ -67,7 +68,11 @@ public class MapsActivity extends AppCompatActivity implements
 
     }
 
-
+    public void sendMessage(View view)
+    {
+        // Do something in response to button click
+        System.out.println("a");
+    }
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
