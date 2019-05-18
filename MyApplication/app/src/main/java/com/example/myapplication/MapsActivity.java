@@ -14,6 +14,8 @@ import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.cloudant.client.api.ClientBuilder;
+import com.cloudant.client.api.CloudantClient;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -44,6 +46,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements
         OnMapReadyCallback,
@@ -78,7 +81,15 @@ public class MapsActivity extends AppCompatActivity implements
     @Override
     protected void onCreate (Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        CloudantClient client = ClientBuilder.account("34c7d227-ad0b-4b2f-9a42-d1156dbb08f6-bluemix.cloudantnosqldb.appdomain.cloud")
+                .username("34c7d227-ad0b-4b2f-9a42-d1156dbb08f6-bluemix")
+                .password("ExOeDKIz8jItzCzpe73046FcQjj68AqWCiU5hqkJiZ_Q")
+                .build();
+
+
         setContentView(R.layout.activity_maps);
+
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             checkUserLocationPermission();
