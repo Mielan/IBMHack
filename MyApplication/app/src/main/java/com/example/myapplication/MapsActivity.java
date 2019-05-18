@@ -95,7 +95,7 @@ public class MapsActivity extends AppCompatActivity implements
     }
 
     public void findRoute(View view){
-        
+
     }
     public void sendMessage(View view)
     {
@@ -276,7 +276,7 @@ public class MapsActivity extends AppCompatActivity implements
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
         markerOptions.title("User Current Location");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
         currentUserLocationMarker = mMap.addMarker(markerOptions);
 
         //camera

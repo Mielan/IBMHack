@@ -29,7 +29,7 @@
 
     <Button
         android:layout_width="205dp"
-        android:layout_height="70dp"
+        android:layout_height="66dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
@@ -37,17 +37,17 @@
         android:layout_marginLeft="216dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/gradient2"
+        android:onClick="findRoute"
         android:text="FindRoute"
         android:textColor="#FFFFFF"
-        android:textSize="20dp"
-        android:onClick="findRoute">
+        android:textSize="20dp">
 
     </Button>
 
     <Button
         android:id="@+id/button"
         android:layout_width="209dp"
-        android:layout_height="70dp"
+        android:layout_height="66dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
@@ -56,7 +56,7 @@
         android:layout_marginBottom="3dp"
         android:background="@drawable/gradient2"
         android:onClick="sendMessage"
-        android:text="Report"
+        android:text="Safe/Danger"
         android:textColor="#FFFFFF"
         android:textSize="20dp">
 
