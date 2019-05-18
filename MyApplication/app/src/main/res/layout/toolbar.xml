@@ -2,8 +2,15 @@
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/a_topBlue"
-
-    >
+    android:background="@drawable/gradient_top">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAFE ROUTE"
+        android:layout_gravity="center"
+        android:id="@+id/toolbar_title"
+        android:textColor="#FFFFFF"
+        android:textSize="28dp"
+        />
 
 </android.support.v7.widget.Toolbar>

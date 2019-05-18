@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/a_darkPurple"
     tools:context=".MapsActivity">
 
 
@@ -36,7 +36,12 @@
         android:layout_marginStart="216dp"
         android:layout_marginLeft="216dp"
         android:layout_marginBottom="3dp"
-        android:background="@drawable/gradient2" />
+        android:background="@drawable/gradient2"
+        android:text="FindRoute"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp">
+
+    </Button>
 
     <Button
         android:id="@+id/button"
@@ -49,7 +54,10 @@
         android:layout_marginLeft="3dp"
         android:layout_marginBottom="3dp"
         android:background="@drawable/gradient2"
-        android:onClick="sendMessage">
+        android:onClick="sendMessage"
+        android:text="Report"
+        android:textColor="#FFFFFF"
+        android:textSize="20dp">
 
     </Button>
 </RelativeLayout>
