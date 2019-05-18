@@ -39,7 +39,8 @@
         android:background="@drawable/gradient2"
         android:text="FindRoute"
         android:textColor="#FFFFFF"
-        android:textSize="20dp">
+        android:textSize="20dp"
+        android:onClick="findRoute">
 
     </Button>
 

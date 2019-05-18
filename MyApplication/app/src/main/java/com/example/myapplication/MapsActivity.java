@@ -94,6 +94,9 @@ public class MapsActivity extends AppCompatActivity implements
 
     }
 
+    public void findRoute(View view){
+        
+    }
     public void sendMessage(View view)
     {
         // Do something in response to button click
