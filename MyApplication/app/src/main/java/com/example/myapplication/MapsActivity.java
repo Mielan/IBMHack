@@ -71,7 +71,7 @@ public class MapsActivity extends AppCompatActivity implements
     private LatLng p;
     private double lat;
     private double lng;
-    JSONObject obj = new JSONObject();
+    JSONObject Juser = new JSONObject();
 
 
     //json object for database
