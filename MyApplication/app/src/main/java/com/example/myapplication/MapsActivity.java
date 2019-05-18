@@ -25,6 +25,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import android.support.v7.widget.Toolbar;
@@ -32,7 +33,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.util.Log;
+import android.content.res.Resources;
 //import android.support.v7.app.ActionBarActivity;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -51,8 +56,12 @@ public class MapsActivity extends AppCompatActivity implements
     private static final int Request_User_Location_Code = 99;
     private ArrayList<Marker> safe = new ArrayList<Marker>();
     private ArrayList<Marker> danger = new ArrayList<Marker>();
+    private static final String TAG = MapsActivity.class.getSimpleName();
     private int dangerOrNot = 1;
     private LatLng p;
+    private double lat;
+    private double lng;
+    JSONObject obj = new JSONObject();
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -100,6 +109,17 @@ public class MapsActivity extends AppCompatActivity implements
 
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
+            try {
+                boolean success = googleMap.setMapStyle(
+                        MapStyleOptions.loadRawResourceStyle(
+                                this, R.raw.style_json));
+                if(!success){
+                    Log.e(TAG, "style parsing failed");
+                }
+
+            } catch (Resources.NotFoundException e) {
+                Log.e(TAG, "Can't find style. Error: ", e);
+            }
 
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
                 @Override
@@ -131,7 +151,12 @@ public class MapsActivity extends AppCompatActivity implements
                                     }
                                 }) ;
                         p = latLng;
-                        System.out.println(p);
+                        lat = p.latitude;
+                        lng = p.longitude;
+                        String latS = Double.toString(lat);
+                        String lngS = Double.toString(lng);
+                        //obj.put(latS, lngS);
+                        System.out.println(lat + " " + lng);
                     } else {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
