@@ -32,5 +32,8 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation group: 'com.cloudant', name: 'cloudant-sync-datastore-android', version:'latest.release'
+    implementation group: 'com.cloudant', name: 'cloudant-client', version: '2.16.0'
+    implementation group: 'com.cloudant', name: 'cloudant-client', version: '2.16.0'
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp-urlconnection', version: '3.8.1'
 
 }
