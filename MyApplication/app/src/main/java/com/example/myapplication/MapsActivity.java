@@ -11,6 +11,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -37,6 +38,9 @@ import android.util.Log;
 import android.content.res.Resources;
 //import android.support.v7.app.ActionBarActivity;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -57,11 +61,21 @@ public class MapsActivity extends AppCompatActivity implements
     private ArrayList<Marker> safe = new ArrayList<Marker>();
     private ArrayList<Marker> danger = new ArrayList<Marker>();
     private static final String TAG = MapsActivity.class.getSimpleName();
+
+    private ArrayList<LatLng> Lsafe = new ArrayList<>();
+    private ArrayList<LatLng> Ldanger = new ArrayList<>();
     private int dangerOrNot = 1;
     private LatLng p;
     private double lat;
     private double lng;
     JSONObject obj = new JSONObject();
+
+    //json object for database
+    JSONArray Jsafe;
+    JSONArray Jdanger;
+    JSONObject Juser = new JSONObject();
+
+
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -156,7 +170,13 @@ public class MapsActivity extends AppCompatActivity implements
                         String latS = Double.toString(lat);
                         String lngS = Double.toString(lng);
                         //obj.put(latS, lngS);
-                        System.out.println(lat + " " + lng);
+                        //System.out.println(lat + " " + lng);
+                        //System.out.println(p);
+
+                        //save to database
+                        Ldanger.add(latLng);
+                        Jdanger = new JSONArray(Lsafe);
+                        Log.d("jdanger",Jdanger.toString());
                     } else {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
@@ -179,8 +199,12 @@ public class MapsActivity extends AppCompatActivity implements
                                     public void onClick(DialogInterface dialog, int which) {
                                         dialog.cancel();
                                         marker.remove();
+
                                     }
                                 }) ;
+                        // save to database
+                        Lsafe.add(latLng);
+                        Jsafe = new JSONArray(Lsafe);
 
                     }
 
@@ -247,9 +271,18 @@ public class MapsActivity extends AppCompatActivity implements
             currentUserLocationMarker.remove();
         }
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        try {
+
+            Juser = new JSONObject(latLng.toString());
+
+        } catch (JSONException e) {
+            Log.e("json", "unexpected JSON exception", e);
+        }
+
         MarkerOptions markerOptions = new MarkerOptions();
         markerOptions.position(latLng);
-        markerOptions.title("user Current Location");
+        markerOptions.title("User Current Location");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
         currentUserLocationMarker = mMap.addMarker(markerOptions);
 
@@ -285,3 +318,4 @@ public class MapsActivity extends AppCompatActivity implements
 
     }
 }
+
