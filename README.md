@@ -1,5 +1,4 @@
 # IBMHack
-Google Map Api Key: AIzaSyBOKOu64M8CGg0rP1QduVPjzaNoUJQ6_MA
 
 ## Ten word Description:
 	Provide a save route to higher ground during flood. 
