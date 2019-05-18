@@ -51,7 +51,7 @@ public class MapsActivity extends AppCompatActivity implements
     private static final int Request_User_Location_Code = 99;
     private ArrayList<Marker> safe = new ArrayList<Marker>();
     private ArrayList<Marker> danger = new ArrayList<Marker>();
-    private int dangerOrNot = 0;
+    private int dangerOrNot = 1;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -95,13 +95,7 @@ public class MapsActivity extends AppCompatActivity implements
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+
             buildGoogleApiClient();
             mMap.setMyLocationEnabled(true);
             mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
