@@ -52,6 +52,7 @@ public class MapsActivity extends AppCompatActivity implements
     private ArrayList<Marker> safe = new ArrayList<Marker>();
     private ArrayList<Marker> danger = new ArrayList<Marker>();
     private int dangerOrNot = 1;
+    private LatLng p;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
@@ -129,7 +130,8 @@ public class MapsActivity extends AppCompatActivity implements
                                         marker.remove();
                                     }
                                 }) ;
-
+                        p = latLng;
+                        System.out.println(p);
                     } else {
                         marker = mMap.addMarker(new MarkerOptions()
                                 .position(latLng)
